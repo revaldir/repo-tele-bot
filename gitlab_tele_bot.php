@@ -76,13 +76,19 @@ if(is_array($get_message)){
 		$count=1;
 		foreach($get_message['commits'] as $pr => $pj)
 		{
+			$commitId = isset($pj['id']) ? $pj['id'] : "";
 			$commit		= isset($pj['message'])?$pj['message']:"";
 			$added		= isset($pj['added'])?count($pj['added']):"0";
 			$modified	= isset($pj['modified'])?count($pj['modified']):"0";
 			$removed	= isset($pj['removed'])?count($pj['removed']):"0";
+			$authorName = isset($pj['author']['name']) ? $pj['author']['name'] : "";
+			$timestamp = isset($pj['timestamp']) ? $pj['timestamp'] : date('Y-m-d H:i:s');
+			$convertedDate = date_format(date_create($timestamp), "Y-m-d H:i:s");
 	
-			$feedback	.= "$count. <code>$commit</code>";
-			$feedback	.= "<i>added:</i> $added, <i>modified:</i> $modified, <i>removed:</i> $removed\n\n";
+			$feedback	.= "$count. <code>$commit | $commitId</code>";
+			$feedback	.= "<i>added:</i> $added, <i>modified:</i> $modified, <i>removed:</i> $removed\n";
+			$feedback .= "<i>author:</i> $authorName\n";
+			$feedback .= "<i>timestamp:</i> $convertedDate\n";
 			$count++;
 		}
 	}
