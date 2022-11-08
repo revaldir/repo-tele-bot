@@ -84,11 +84,12 @@ if(is_array($get_message)){
 			$authorName = isset($pj['author']['name']) ? $pj['author']['name'] : "";
 			$timestamp = isset($pj['timestamp']) ? $pj['timestamp'] : date('Y-m-d H:i:s');
 			$convertedDate = date_format(date_create($timestamp), "Y-m-d H:i:s");
-	
-			$feedback	.= "$count. <code>$commit | $commitId</code>";
+
+			$feedback	.= "$count. <code>$commit</code>\n";
+			$feedback	.= "ID: <i>$commitId</i>\n";
 			$feedback	.= "<i>added:</i> $added, <i>modified:</i> $modified, <i>removed:</i> $removed\n";
 			$feedback .= "<i>author:</i> $authorName\n";
-			$feedback .= "<i>timestamp:</i> $convertedDate\n";
+			$feedback .= "<i>timestamp:</i> $convertedDate\n\n";
 			$count++;
 		}
 	}
