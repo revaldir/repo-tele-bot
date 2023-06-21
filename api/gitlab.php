@@ -12,6 +12,11 @@ if(isset($_GET['credential'])){
 		$token	 = getenv('ctm_ch_key');
 		$chat_id = getenv('ctm_ch');
 	}
+
+	if($_GET['credential']==3){
+		$token = getenv('gitlab_token_default');
+		$chat_id = getenv('eproc_ch');
+	}
 }
 
 
